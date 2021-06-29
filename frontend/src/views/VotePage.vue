@@ -9,12 +9,14 @@
         no-close-on-backdrop
       >
         <template #modal-title>LOGIN</template>
-        <div style="text-align: center; font-family: sans-serif">
-          Login 후 투표를 진행할 수 있습니다.
-          <img src="@/assets/votelogo.png" />
+        <div style="text-align: center; font-family:NIXGONM-Vb;">
+          로그인 후 투표를 진행할 수 있습니다.
+          <img src="@/assets/vnc_logo.png" style="margin-top:-40px" />
         </div>
-        <br />
-        <div class="d-block text-center justify-center">
+        <div
+          class="d-block text-center justify-center"
+          style="margin-top:-60px"
+        >
           <kakaoLogin />
         </div>
       </b-modal>
@@ -37,7 +39,7 @@
         <VoteStatus style="" />
       </b-modal>
       <div name="title">
-        <div style="text-align:center; word-break:break-all;">
+        <div style="text-align: center; word-break: break-all">
           <h1 id="votepage_title">{{ mainTitle }}</h1>
           <br />
           <div>{{ createDate }} ~ {{ endDate }}</div>
@@ -51,17 +53,17 @@
         </div>
       </div>
       <div name="main-image" style="margin-top: 30px">
-        <div style="text-align:center">
+        <div style="text-align: center">
           <img
             v-if="mainImagePath != ''"
             :src="mainImagePath"
-            style="width: 500px; height: 400px; border-radius: 20px;"
+            style="width: 500px; height: 400px; border-radius: 20px"
             alt=""
           />
         </div>
       </div>
       <div name="content">
-        <div style="text-align:center;  word-break:break-all;">
+        <div style="text-align: center; word-break: break-all">
           <p id="votepage_desc">
             {{ mainDescription }}
           </p>
@@ -121,7 +123,7 @@
         name="vote-end-button"
         style="margin-top: -10px; margin-bottom: 20px"
       >
-        <div style="margin-bottom: 50px;text-align:center">
+        <div style="margin-bottom: 50px; text-align: center">
           <a class="button_do" @click="doVote">투표 하기!</a>
         </div>
         <div class="modal" tabindex="-1" style="margin-top: 200px">
@@ -282,8 +284,6 @@ export default {
       }
       // 추가 소켓 통신
       this.syncSocket();
-      // go to graph
-      this.$router.replace("/votegraph/" + this.hashKey);
     },
     async sendVote(idx) {
       this.$store.state.loading.text = "투표가 진행중입니다...";
@@ -351,6 +351,9 @@ export default {
           type: "JOIN",
         })
       );
+
+      // go to graph
+      this.$router.replace("/votegraph/" + this.hashKey);
     },
     onError(error) {
       console.log(error);
